@@ -1,0 +1,1 @@
+setTimeout(() => OWOP.utils.showPlayerList(true), 1000);

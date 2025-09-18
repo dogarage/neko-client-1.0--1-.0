@@ -1,0 +1,14 @@
+var packageManifest = {
+    "displayName": undefined,
+    "packageName": undefined,
+    "version": undefined,
+    "author": undefined,
+    "description": undefined,
+    "tags": [],
+    "dependencies": [],
+    "incompatible": [],
+    "license": undefined,
+    "entry": undefined
+};
+
+OWOP.packages[packageManifest.packageName] = packageManifest;

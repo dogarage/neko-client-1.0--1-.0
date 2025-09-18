@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>World of Pixels</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="icon" type="image/x-icon" href="./favicon.ico">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+	<div id="viewport">
+		<canvas id="animations"></canvas>
+	</div>
+	<div id="load-scr">
+		<ul id="load-ul">
+			<li>
+				<img id="logo" src="./img/owop.png" width="224px" height="190px" alt="Our World Of Pixels"
+					draggable="false" />
+			</li>
+			<noscript>
+				<li id="noscript-msg" class="whitetext framed">
+					<p>Our World Of Pixels is an (almost) infinite canvas where you can draw online with other people,
+						or explore many user created worlds.</p>
+					<p>But to use the website, you first need to <a href="http://www.enable-javascript.com/"
+							target="_blank">enable javascript</a>!</p>
+				</li>
+			</noscript>
+			<li id="status" class="whitetext hidden">
+				<img id="spinner" src="./img/loading.gif" />
+				<span id="status-msg">Loading...</span>
+			</li>
+			<li id="load-options" class="framed hidden">
+				<button id="reconnect-btn">Reconnect</button>
+			</li>
+		</ul>
+	</div>
+	<div id="windows" class="pixelated"></div>
+	<div id="server-selector" class="centered winframe hidden">
+		<span id="ss-title">Server Selector</span>
+		<div id="ss-container" class="flex-v">
+			<div id="ss-buttons" class="flex-h">
+				<button id="ss-owop-b" class="hidden">OWOP</button>
+				<button id="ss-lan-b" class="hidden">LAN</button>
+			</div>
+			<div id="ss-owop" class="">
+				<div>
+					<input id="ss-owop-input" type="text" placeholder="World Name">
+					<div>
+						<button id="ss-owop-input-add">Add</button><button id="ss-owop-input-join">Join</button>
+					</div>
+				</div>
+				<div id="ss-owop-servers"></div>
+			</div>
+			<div id="ss-lan" class="hidden">
+				<div>
+					<input type="text" placeholder="LAN World Name">
+					<input type="text" placeholder="LAN Port">
+					<button>Add</button>
+					<button>Join</button>
+				</div>
+				<div id="ss-lan-servers"></div>
+			</div>
+		</div>
+	</div>
+	<div id="palette-bg" class="hideui"></div>
+	<div id="palette">
+		<div id="palette-opts">
+			<input type="color" id="palette-input" style="display:none">
+			<button id="palette-create" tooltip="Add color" class="generic-display"></button>
+			<button id="palette-load" tooltip="Load palette" class="generic-display"></button>
+			<button id="palette-save" tooltip="Save palette" class="generic-display"></button>
+			<div id="picker-anchor"></div>
+		</div>
+		<div id="palette-colors"></div>
+	</div>
+	<span id="topleft-displays" class="hideui">
+		<span id="xy-display"></span>
+		<span id="pbucket-display"></span>
+		<span id="notice-display" class="generic-display hidden" tooltip="Click to dismiss message" style="color:#fff"
+			notice-id="5">
+			<span style="color:#ff0">!!UPDATE!!: </span>
+			<span>Chat and commands have been updated. A custom color picker and palette management have also been
+				added.</span>
+		</span>
+	</span>
+	<span id="topright-displays">
+		<span id="dinfo-display" class="framed" data-pm="1"><span id="dinfo-hlp">?</span>
+			<span id="dinfo-hlp-box" class="framed">
+				<span>A generous donor has helped fund the site and gave everyone a paint speed boost!</span>
+				<span>Donate with the help button on the bottom left.</span>
+			</span>
+		</span>
+		<span id="playercount-display"></span>
+	</span>
+	<div id="bottomleft-displays">
+		<button id="help-button" tooltip="Help"><img src="./img/gear.png" tooltip="Help"></button>
+		<button id="packages-button" tooltip="Packages"><img src="./img/gear.png" tooltip="Packages"></button>
+	</div>
+	<div id="bottomright-displays">
+		<div id="chat">
+			<ul id="chat-messages"></ul>
+			<textarea id="chat-input" draggable="false" type="text" maxlength="120" placeholder="Press [Enter] to chat!"
+				disabled></textarea>
+		</div>
+	</div>
+	<div id="help" class="hidden">
+		<span class="title">Help</span>
+		<button id="help-close" class="windowCloseButton"></button>
+		<div class="content whitetext">
+			<div class="links">
+				<!-- <a target="_blank" href="http://ourworldofpixels.gamepedia.com/"><img src="./img/wiki.png" /></a> -->
+				<a target="_blank" href="https://owop.me/discord"><img src="./img/discord.png" /></a>
+				<a target="_blank" href="https://reddit.com/r/OurWorldOfPixels"><img src="./img/reddit.png" /></a>
+				<!-- <a target="_blank" href="https://www.facebook.com/OurWorldOfPixels/"><img src="./img/facebook.png" /></a> -->
+				<!-- <span id="donate-button" data-isrc="./img/donate.png"></span> -->
+			</div>
+			<hr /> Type /help for a list of all commands
+			<ul>
+				<li class="kb-F1"><b>F1</b> - Hide part of the GUI</li>
+				<li class="kb-F2"><b>F2</b> - Hide other cursors</li>
+				<li class="kb-G"><b>G</b> - Toggle grid</li>
+				<li class="kb-H"><b>H</b> - Toggle protection outlines</li>
+				<li class="kb-BACKTICK/TILDE"><b>`/~</b> - Manually add color</li>
+				<li class="kb-SHIFT"><b>Shift + Left Click / Middle Click</b> - Move camera</li>
+				<li><b>Ctrl + Z</b> - Undo pixel (+ Shift = bulk undo)</li>
+				<li class="kb-PLUS/MINUS/NUMPAD_ADD/NUMPAD_SUBTRACT/EQUALS/UNDERSCORE"><b>Ctrl + Scroll</b> - Change
+					zoom level</li>
+				<hr>
+				<div id="keybind-settings">
+					<div id="keybinddiv"></div>
+					<div id="keybindopts">
+						<div class="kbs-top"> Default Key Bindings </div>
+						<hr>
+						<div class="kbs-bottom">
+							<button id="kb-og">Original Defaults</button>
+							<br>
+							<button id="kb-new">New Defaults</button>
+						</div>
+					</div>
+				</div>
+				<!-- <li><b>M</b> - Mute site audio</li>
+					<li><b>D</b> - Cursor tool</li>
+					<li><b>F</b> - Bucket tool</li>
+					<li><b>Q</b> - Pipette tool</li>
+					<li><b>X</b> - Move tool</li>
+					<li><b>W</b> - Line tool</li>
+					<li><b>Z</b> - Zoom tool</li>
+					<li><b>E</b> - Export tool</li> -->
+			</ul>
+			<label><input id="no-sound" type="checkbox">Disable sounds</label>
+			<label><input id="hex-coords" type="checkbox">Hex coords</label>
+			<label><input id="experimental-grid" type="checkbox">Experimental Grid</label>
+		</div>
+	</div>
+	<div id="packages" class="hidden">
+		<span class="title">Packages</span>
+		<button id="packages-close" class="windowCloseButton"></button>
+		<div class="title">Packages are installed once and can only be uninstalled by reloading.</div>
+		<div id="packages-container" class="content whitetext">
+		</div>
+	</div>
+	<!-- <div id="palette-bg"></div>
+		<span id="xy-display"></span>
+		<span id="topright-displays">
+			<span id="dinfo-display" class="framed" data-pm="1"><span id="dinfo-hlp">?</span>
+				<span id="dinfo-hlp-box" class="framed">
+					<span>A generous donor has helped fund the site and gave everyone a paint speed boost!</span>
+					<span>Donate with the help button on the bottom left.</span>
+				</span>
+			</span>
+			<span id="playercount-display"></span>
+		</span> -->
+	<script src="../src/bundle.js"></script>
+</body>
+
+</html>
