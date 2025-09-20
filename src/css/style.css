@@ -189,14 +189,13 @@ img,
 	box-shadow: 0px 0px 5px #000;
 }
 
-#windows>div>span {
+div > span:first-child {
 	/* Title */
 	display: block;
 	pointer-events: none;
-	margin-top: -7px;
+	margin-bottom: 12px;
 	text-shadow: 1px 1px var(--bg-inset);
 	color: var(--bg-dark);
-	margin-bottom: 3px;
 	min-width: 100%;
 	text-align: center;
 }
@@ -432,6 +431,11 @@ button:active {
 	margin: -18px -4px;
 	width: 36px;
 	height: 36px;
+}
+
+#windows > div:first-child > span {
+	/* sad trick to get the title that should be enclosed with the toole :( */
+	margin: -7px 0 3px ;
 }
 
 #toole-container>button {
@@ -773,6 +777,7 @@ button:active {
 
 #ss-container {
 	display: flex;
+	min-height: 100%;
 	margin: 0px;
 	border-radius: 5px;
 	background-color: var(--bg-dark);
@@ -795,14 +800,14 @@ button:active {
 	box-shadow: 3px 2px 0px 0px var(--bg-inset);
 }
 
-#ss-title {
+/*#ss-title {
 	display: block;
 	pointer-events: none;
 	text-shadow: 1px 1px var(--bg-inset);
 	color: var(--bg-dark);
 	margin-bottom: 10px;
 	text-align: center;
-}
+}*/
 
 #ss-lan,
 #ss-owop {
@@ -815,11 +820,11 @@ button:active {
 #ss-owop>div:first-child {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: flex-end;
 }
 
 #ss-owop>div {
-	margin: 4px 0px;
+	margin: 4px 0;
 }
 
 #ss-owop-servers {
