@@ -12,6 +12,7 @@
 html,
 body {
 	font: 16px pixel-op, sans-serif;
+	image-rendering: pixelated;
 	width: 100%;
 	height: 100%;
 	margin: 0;
@@ -106,11 +107,6 @@ button.winframe:active {
 	color: #FFF;
 	font: 16px pixel-op, sans-serif;
 	text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
-}
-
-img,
-#tool-select {
-	image-rendering: pixelated;
 }
 
 #load-scr {
@@ -463,32 +459,44 @@ button:active {
 }
 
 #palette {
-	right: -5px;
-	top: 50%;
-	transform: translateY(-50%) translateX(200%);
-	width: 45px;
+	bottom: 0;
+	margin-left: calc(50% - 20px); /* half the screen minus the half border*/
+	transform: translateY(250%);
+	width: 40px; /* this bitch ass*/
 	height: 40px;
 	box-sizing: border-box;
 }
 
+#palette::before {
+	content: ' ';
+	display: block;
+	background-color: rgba(0, 0, 0, 0.2);
+	position: relative;
+	padding: 12px 0;
+	top: 50%;
+	width: 120vw;
+	height: 100%;
+	transform: translateY(-50%) translateX(-50%);
+}
+
+/*
 #palette-bg {
 	position: absolute;
 	height: 100%;
 	width: 44px;
 	top: 0;
-	right: 0;
+	right:
 	background-color: rgba(0, 0, 0, 0.3);
 	transition: transform 0.75s;
 	pointer-events: none;
-}
+}*/
 
 #palette-opts {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	height: 100%;
+	display: inline-block;
+	width: max-content;
 	position: absolute;
-	right: 50px;
+	bottom: 50px;
+	left: -97%; /* center it and do some irrational number floor of 96.66... :(, being some sub pixels offcenter, annoying me a */
 	box-sizing: border-box;
 	pointer-events: all;
 }
@@ -535,6 +543,8 @@ button:active {
 
 #palette-colors {
 	position: absolute;
+	display: flex;
+	gap: 8px;
 	left: -1px;
 	top: -9px;
 	transition: transform 0.2s ease-out;
@@ -864,7 +874,7 @@ button:active {
 	bottom: 0;
 	min-width: 20%;
 	max-width: 450px;
-	display: flex;
+	display: none;
 	font-family: pixel-op, monospace;
 	flex-direction: column;
 	background-color: transparent;
