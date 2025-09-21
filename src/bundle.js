@@ -5340,6 +5340,7 @@
     elements.topRightDisplays.classList[bool ? "remove" : "add"]("hideui");
     elements.topLeftDisplays.classList[bool ? "remove" : "add"]("hideui");
     elements.helpButton.style.transform = bool ? "" : "translateY(120%) translateX(-120%)";
+    elements.packagesButton.style.transform = bool ? "" : "translateY(120%) translateX(-120%)";
     //elements.paletteBg.style.transform = bool ? "" : "translateX(100%)";
     elements.noticeDisplay.style.transform = bool ? "inherit" : `translateY(-${elements.topLeftDisplays.getBoundingClientRect().height}px)`;
     elements.pBucketDisplay.innerText = `Place bucket: ${net.protocol.placeBucket.allowance.toFixed(1)} (${net.protocol.placeBucket.rate}/${net.protocol.placeBucket.time}s).`;
