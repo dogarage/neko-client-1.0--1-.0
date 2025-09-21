@@ -1060,7 +1060,7 @@ button:active {
 #keybindopts {
 	text-align: right;
 }
-
+/* 
 .color-picker-frame {
 	border: 5px var(--bg-dark) solid;
 	border-image: url(../img/small_border.png) 5 repeat;
@@ -1107,7 +1107,7 @@ button:active {
 
 .picker-dragging {
 	cursor: grabbing;
-}
+} */
 
 .palette-load {
 	display: flex;
