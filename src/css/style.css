@@ -776,9 +776,8 @@ button:active {
 }
 
 #ss-container {
-	display: flex;
 	min-height: 100%;
-	margin: 0px;
+	margin: 0;
 	border-radius: 5px;
 	background-color: var(--bg-dark);
 	box-shadow: inset 3px 2px 0px 0px var(--bg-inset);
@@ -795,9 +794,13 @@ button:active {
 	border: 6px var(--bg-light) solid;
 	background-color: var(--bg-light);
 	transition: filter 0.125s;
+	margin-right: 12px;
 	border-radius: 5px;
-	margin-left: 12px;
 	box-shadow: 3px 2px 0px 0px var(--bg-inset);
+}
+
+#ss-container button:last-child {
+	margin: 0;
 }
 
 /*#ss-title {
@@ -813,14 +816,13 @@ button:active {
 #ss-owop {
 	text-shadow: 1px 1px var(--bg-inset);
 	color: #eee;
-	margin-bottom: 3px;
 	margin: 10px;
 }
 
 #ss-owop>div:first-child {
 	display: flex;
-	flex-direction: row;
-	justify-content: flex-end;
+	justify-content: space-between;
+	padding: 6px;
 }
 
 #ss-owop>div {
@@ -830,10 +832,12 @@ button:active {
 #ss-owop-servers {
 	max-height: 200px;
 	overflow: scroll;
+	padding: 6px;
 }
 
 #ss-owop-servers>* {
 	display: flex;
+	width: 100%;
 	flex-direction: row;
 	justify-content: space-between;
 	margin: 10px 3px 3px 0px;
